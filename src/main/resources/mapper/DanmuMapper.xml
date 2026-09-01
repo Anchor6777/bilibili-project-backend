@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.usercenterbackend.mapper.DanmuMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.usercenterbackend.model.domain.Danmu">
+            <id property="id" column="id" />
+            <result property="vid" column="vid" />
+            <result property="author_name" column="author_name" />
+            <result property="time" column="time" />
+            <result property="content" column="content" />
+            <result property="color" column="color" />
+            <result property="createTime" column="createTime" />
+            <result property="isDelete" column="isDelete" />
+            <result property="type" column="type" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,vid,author_name,time,content,color,
+        createTime,isDelete,type
+    </sql>
+</mapper>

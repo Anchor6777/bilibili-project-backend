@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.usercenterbackend.mapper.VideoMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.usercenterbackend.model.domain.Video">
+            <id property="id" column="id" />
+            <result property="source_url" column="source_url" />
+            <result property="cover_url" column="cover_url" />
+            <result property="play_count" column="play_count" />
+            <result property="play_time" column="play_time" />
+            <result property="title" column="title" />
+            <result property="tags" column="tags" />
+            <result property="uid" column="uid" />
+            <result property="video_desc" column="video_desc" />
+            <result property="createTime" column="createTime" />
+            <result property="updateTime" column="updateTime" />
+            <result property="isDelete" column="isDelete" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,source_url,cover_url,play_count,play_time,title,
+        tags,uid,video_desc,createTime,updateTime,
+        isDelete
+    </sql>
+</mapper>
