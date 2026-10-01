@@ -11,6 +11,7 @@ import com.example.usercenterbackend.model.body.UserDeleteRequest;
 import com.example.usercenterbackend.model.body.UserLoginRequest;
 import com.example.usercenterbackend.model.body.UserRegisterRequest;
 import com.example.usercenterbackend.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,7 @@ import static com.example.usercenterbackend.commons.JwtUtils.verifyToken;
 
 @RestController
 @RequestMapping("/user")
+@Tag(name = "用户管理", description = "用户相关操作，登录、注册、查询、删除等")
 public class UserController {
 
     @Resource

@@ -9,6 +9,8 @@ import com.example.usercenterbackend.model.domain.NewMsg;
 import com.example.usercenterbackend.model.body.SendMsgRequest;
 import com.example.usercenterbackend.service.NewMsgService;
 import com.example.usercenterbackend.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/new_msg")
+@Tag(name = "实时聊天室", description = "...")
 public class NewMsgController {
     @Resource
     private NewMsgService msgService;
