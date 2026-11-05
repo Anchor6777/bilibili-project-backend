@@ -44,14 +44,16 @@ public class NewChatHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        User user = (User) session.getAttributes().get(Constant.USER_LOGIN_STATUS);
-        clients.put(user.getId(), session);
+    public void afterConnectionEstablished(WebSocketSession session) {
+        Long uid = (Long) session.getAttributes().get(Constant.USER_LOGIN_STATUS);
+        clients.put(uid, session);
+        System.out.println("id为"+uid+"的用户，已连接ws");
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        User user = (User) session.getAttributes().get(Constant.USER_LOGIN_STATUS);
-        clients.remove(user.getId());
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+        Long uid = (Long) session.getAttributes().get(Constant.USER_LOGIN_STATUS);
+        clients.remove(uid);
+        System.out.println("id为"+uid+"的用户，已断开连接");
     }
 }
