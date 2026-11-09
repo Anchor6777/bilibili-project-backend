@@ -1,9 +1,11 @@
 package com.example.usercenterbackend.controller;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.usercenterbackend.commons.BaseResponse;
 import com.example.usercenterbackend.commons.BusinessException;
 import com.example.usercenterbackend.commons.ErrorCode;
+import com.example.usercenterbackend.commons.JwtUtils;
 import com.example.usercenterbackend.constant.Constant;
 import com.example.usercenterbackend.model.body.UserLoginResponse;
 import com.example.usercenterbackend.model.domain.User;
@@ -72,6 +74,19 @@ public class UserController {
     @GetMapping("/refresh")
     public BaseResponse<UserLoginResponse> refresh(@RequestParam String refreshToken) {
         return userService.refresh(refreshToken);
+    }
+
+    /**
+     * 验证token是否有效
+     */
+    @GetMapping("/verify")
+    public BaseResponse<Boolean> verifyToken(@RequestParam String token) {
+        try{
+            JwtUtils.verifyToken(token);
+            return BaseResponse.success(true);
+        }catch (Exception e){
+            throw new BusinessException(ErrorCode.NOT_LOGIN,e.getMessage());
+        }
     }
 
     /**

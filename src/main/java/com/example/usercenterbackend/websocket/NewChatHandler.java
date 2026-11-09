@@ -7,6 +7,8 @@ import com.example.usercenterbackend.model.domain.TypedMessage;
 import com.example.usercenterbackend.model.domain.User;
 import com.example.usercenterbackend.service.NewMsgService;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -20,6 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NewChatHandler extends TextWebSocketHandler {
     // 用户id -> WebSocketSession实例
     public static final Map<Long, WebSocketSession> clients = new ConcurrentHashMap<>();
+    private static final Logger log = LoggerFactory.getLogger(NewChatHandler.class);
 
     @Resource
     private NewMsgService msgService;
@@ -47,7 +50,7 @@ public class NewChatHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) {
         Long uid = (Long) session.getAttributes().get(Constant.USER_LOGIN_STATUS);
         clients.put(uid, session);
-        System.out.println("id为"+uid+"的用户，已连接ws");
+        log.info("id为"+uid+"的用户，已连接ws");
     }
 
     @Override

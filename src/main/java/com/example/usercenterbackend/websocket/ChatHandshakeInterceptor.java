@@ -1,5 +1,6 @@
 package com.example.usercenterbackend.websocket;
 
+import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.example.usercenterbackend.commons.BusinessException;
 import com.example.usercenterbackend.commons.ErrorCode;
@@ -34,12 +35,14 @@ public class ChatHandshakeInterceptor implements HandshakeInterceptor {
         // 根据token获取用户id
         try {
             Map<String,Object> claims = JwtUtils.verifyToken(token);
-            Integer id = (Integer) claims.get("id");
-            Long uid = id.longValue();
+            Object raw = claims.get("id");
+            if (raw == null) { response.setStatusCode(HttpStatus.UNAUTHORIZED); return false; }
+            Long uid = ((Number) raw).longValue();
             attributes.put(Constant.USER_LOGIN_STATUS,uid);
             return true;
-        }catch (TokenExpiredException e){
+        }catch (Exception e){
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
+            log.error("ws握手拦截器报错"+e.getMessage(),e);
             return false;
         }
 
