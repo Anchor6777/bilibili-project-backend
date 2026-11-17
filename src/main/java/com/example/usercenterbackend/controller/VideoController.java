@@ -2,10 +2,7 @@ package com.example.usercenterbackend.controller;
 
 import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.usercenterbackend.commons.BaseResponse;
-import com.example.usercenterbackend.commons.BusinessException;
-import com.example.usercenterbackend.commons.ErrorCode;
-import com.example.usercenterbackend.commons.JwtUtils;
+import com.example.usercenterbackend.commons.*;
 import com.example.usercenterbackend.constant.Constant;
 import com.example.usercenterbackend.model.body.SendCommentRequest;
 import com.example.usercenterbackend.model.body.SendDanmuRequest;
@@ -44,8 +41,8 @@ public class VideoController {
 
     // 获取首页推荐视频列表
     @GetMapping("/video_list")
-    public BaseResponse<List<NamedVideo>> getRecommendVideoList(@RequestParam Long count, HttpServletRequest request) {
-        return videoService.getRecommendVideoList(count);
+    public BaseResponse<PageResponse<NamedVideo>> getRecommendVideoList(@RequestParam Long pageNum, @RequestParam Long pageSize, HttpServletRequest request) {
+        return videoService.getRecommendVideoList(pageNum, pageSize);
     }
 
     // 根据视频vid获取视频信息

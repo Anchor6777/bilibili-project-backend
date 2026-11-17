@@ -1,6 +1,7 @@
 package com.example.usercenterbackend.service;
 
 import com.example.usercenterbackend.commons.BaseResponse;
+import com.example.usercenterbackend.commons.PageResponse;
 import com.example.usercenterbackend.model.domain.NamedVideo;
 import com.example.usercenterbackend.model.domain.Video;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -16,7 +17,7 @@ public interface VideoService extends IService<Video> {
 
     BaseResponse<Video> getVideoByVideoId(Long id);
 
-    BaseResponse<List<NamedVideo>> getRecommendVideoList(Long count);
+    BaseResponse<PageResponse<NamedVideo>> getRecommendVideoList(Long pageNum, Long pageSize);
 
     BaseResponse<List<Video>> getVideoListByUserID(Long uid,Long count);
 }
