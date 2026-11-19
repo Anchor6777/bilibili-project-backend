@@ -57,7 +57,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video>
 
         Map<Long, String> usernameMap = new HashMap<>();
         if (!videos.isEmpty()){
-            Set<Long> uids = videos.stream().map(Video::getId).filter(Objects::nonNull).collect(Collectors.toSet());
+            Set<Long> uids = videos.stream().map(Video::getUid).filter(Objects::nonNull).collect(Collectors.toSet());
             usernameMap = userService.listByIds(uids).stream().collect(Collectors.toMap(User::getId, User::getUsername,(a, b) -> a));
         }
 

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: user-center-backend
+  datasource:
+    url: "jdbc:mysql://127.0.0.1:3306/user-center?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true"
+    username: Anchor
+    password: zhuyucong137168
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # 序列化配置
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+server:
+  address: 127.0.0.1
+  port: 8080
+  servlet:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+    session:
+      cookie:
+        max-age: 7d
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除字段名
+      logic-delete-value: 1 # 逻辑已删除值。
+      logic-not-delete-value: 0 # 逻辑未删除值。

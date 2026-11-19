@@ -17,7 +17,9 @@ import java.util.List;
  *     "pageNum": 1,
  *     "pageSize": 15,
  *     "hasMore": true
- *   }
+ *   },
+ *   message: "123",
+ *   description: "456"
  * }
  * @param <T> : 参数泛型
  */
